@@ -20,4 +20,4 @@ create table bookings (
 	middle_name varchar(32) not null,
 	email varchar(128) not null,
 	phone char(32)
-)
+);
