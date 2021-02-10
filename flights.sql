@@ -1,6 +1,6 @@
-create table flights (
+create table if not exists flights (
 	flight_id integer primary key,
-	flight_number integer not null
+	flight_number integer not null,
 	takeoff_date date not null,
 	takeoff_time time not null,
 	takeoff_city varchar(128) not null,
@@ -10,7 +10,7 @@ create table flights (
 	flight_duration tinyint not null
 );
 
-create table bookings (
+create table if not exists bookings (
 	booking_id integer primary key,
 	booking_number integer not null,
 	flight_number integer not null,
