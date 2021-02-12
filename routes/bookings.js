@@ -8,13 +8,13 @@ const sqlite3 = require('sqlite3').verbose();
 let db = new sqlite3.Database('../flights.db');
 
 
-// Make request to this route make a booking 
+// Make a request to this route make a booking 
 router.post('/', function(req, res, next) {
 
 })
 
 // Make a request to this route to cancel a booking
-router.post('/', function(req, res, next) {
+router.post('/remove/:id', function(req, res, next) {
 	
 })
 module.exports = router;
