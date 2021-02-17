@@ -40,7 +40,7 @@ my @cities = (
 	"Yenagoa",
 	"Zaria"
 );
-
+my @dates;								# An array of random dates for sample flights
 
 # Connect to the flights.db database
 my $db = DBI -> connect("dbi:SQLite:dbname=flights.db", "", "");
@@ -52,5 +52,8 @@ for($flightCount) {
 
 # Returns a random date.
 sub getRandomDate {
+
+	my $month = rand(12);			# Generate a random month
+	
 
 }
