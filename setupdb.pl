@@ -49,3 +49,8 @@ my $db = DBI -> connect("dbi:SQLite:dbname=flights.db", "", "");
 for($flightCount) {
 	
 }
+
+# Returns a random date.
+sub getRandomDate {
+
+}
