@@ -51,7 +51,7 @@ for($flightCount) {
 }
 
 # Returns a random date.
-sub getRandomDate {
+sub getRandomDateTime {
 
 	my $month = int(rand(12)) + 1;			# Generate a random month
 	my $day;								# For a random date
