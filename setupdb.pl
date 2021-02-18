@@ -81,5 +81,5 @@ sub getRandomDateTime {
 	my $second = int(rand(60));
 
 	#sprintf "2021-$month-$day $hour:$minute:$second", $month, $day, $hour, $minute, $second;
-	sprintf "2021-%02d-%02d %02d:%02d:%02d", $month, $day, $hour, $minute, $second;
+	sprintf "2021-%02d-%02dT%02d:%02d:%02d", $month, $day, $hour, $minute, $second;
 }
