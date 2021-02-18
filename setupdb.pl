@@ -76,4 +76,7 @@ sub getRandomDateTime {
 		$day = int(rand(28)) + 1;
 	}
 
+	my $hour = int(rand(24));
+	my $minute = int(rand(60));
+	my $second = int(rand(60));
 }
