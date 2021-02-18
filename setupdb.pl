@@ -79,4 +79,6 @@ sub getRandomDateTime {
 	my $hour = int(rand(24));
 	my $minute = int(rand(60));
 	my $second = int(rand(60));
+
+	return "2021-$month-$day $hour:$minute:$second";
 }
