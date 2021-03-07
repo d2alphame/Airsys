@@ -48,8 +48,9 @@ my $db = DBI -> connect("dbi:SQLite:dbname=flights.db", "", "");
 # Insert random flights into the flights table. For demo purposes only
 for(1 .. $flightCount) {
 
-
-	
+	my $date = getRandomDateTime();						# Generate a random take off date
+	my $takeoff_city = $cities[rand @cities];			# Choose a takeoff city at random
+	my $destination_city = $cities[rand @cities];		# Choose a destination city at random
 }
 
 # Returns a random date.
