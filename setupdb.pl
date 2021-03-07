@@ -46,7 +46,9 @@ my @dates;								# An array of random dates for sample flights
 my $db = DBI -> connect("dbi:SQLite:dbname=flights.db", "", "");
 
 # Insert random flights into the flights table. For demo purposes only
-for($flightCount) {
+for(1 .. $flightCount) {
+
+
 	
 }
 
