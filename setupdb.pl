@@ -3,15 +3,6 @@
 use v5.26;
 use DBI;
 
-# Connect to the database
-my $db = DBI -> connect("dbi:SQLite:dbname=hostels.db", "", "");
-my $prep = $db -> prepare(<<"END-SQL");
-insert into flights
-(flight_number, takeoff, takeoff_city, takeoff_airport, takeoff_terminal, destination_city, flight_duration)
-values(?, ?, ?, ?, ?, ?, ?)
-END-SQL
-
-
 # Number of random flights to fill the database with initially. For demo
 # purposes only.
 my $flightCount = 1000;
@@ -54,12 +45,24 @@ my @dates;								# An array of random dates for sample flights
 # Connect to the flights.db database
 my $db = DBI -> connect("dbi:SQLite:dbname=flights.db", "", "");
 
+# Prepare the 'prepare statement'
+my $prep = $db -> prepare(<<"END-SQL");
+insert into flights
+(flight_number, takeoff, takeoff_city, takeoff_airport, takeoff_terminal, destination_city, flight_duration)
+values(?, ?, ?, ?, ?, ?, ?)
+END-SQL
+
+
 # Insert random flights into the flights table. For demo purposes only
 for(1 .. $flightCount) {
 
 	my $date = getRandomDateTime();						# Generate a random take off date
 	my $takeoff_city = $cities[rand @cities];			# Choose a takeoff city at random
 	my $destination_city = $cities[rand @cities];		# Choose a destination city at random
+	my $takeoff_airport = 'MMA';
+	my $terminal = ('A' .. 'Z')[rand('A'..'Z')];
+
+	$prep -> execute($_, $date, $takeoff_city, $takeoff_airport, $terminal, $destination_city, (rand * 12) );
 }
 
 # Returns a random date.
