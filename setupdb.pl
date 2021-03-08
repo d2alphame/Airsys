@@ -3,6 +3,10 @@
 use v5.26;
 use DBI;
 
+# Connect to the database
+my $db = DBI -> connect("dbi:SQLite:dbname=hostels.db", "", "");
+my $prep = $db -> prepare("insert into flights (flight_number, takeoff, takeoff_city, takeoff_airport, takeoff_terminal, destination_city, flight_duration) values(?, ?, ?, ?, ?, ?, ?)");
+
 # Number of random flights to fill the database with initially. For demo
 # purposes only.
 my $flightCount = 1000;
