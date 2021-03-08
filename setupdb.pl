@@ -8,15 +8,15 @@ use DBI;
 my $flightCount = 1000;
 
 # Fill the flights table with some random flights
-my @cities = (
-	"Abuja",
-	"Enugu",
-	"Ilorin",
-	"Kaduna",
-	"Kano",
-	"Lagos",
-	"Port Harcourt",
-	"Sokoto",
+my %cities_airports = (
+	Abuja => "Nnamdi Azikiwe International Airport",
+	Enugu => "Akanu Ibiam International Airport",
+	Ilorin => "Ilorin International Airport",
+	Kaduna => "Kaduna International Airport",
+	Kano => "Mallam Aminu Kano International Airport",
+	Lagos => "Murtala Muhammed International Airport",
+	"Port Harcourt" => "Port Harcourt International Airport",
+	Sokoto => "Sadiq Abubakar III International Airport",
 	"Asaba",
 	"Bauchi",
 	"Benin",
