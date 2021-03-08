@@ -27,18 +27,18 @@ my %cities_airports = (
 	Owerri				=>		"Sam Mbakwe International Cargo Airport",
 	Uyo					=>		"Akwa Ibom International Airport",
 	Yola				=>		"Yola Airport",
-	Akure				=>		"",
-	Bauch				=>
-	"Gombe",
-	"Birnin Kebbi",
-	"Dutse",
-	"Jalingo",
-	"Katsina",
-	"Makurdi",
-	"Minna",
-	"Warri",
-	"Yenagoa",
-	"Zaria"
+	Akure				=>		"Akure Airport",
+	Bauchi				=>		"Bauchi State Airport",
+	Gombe				=>		"Gombe Lawanti International Airport",
+	"Birnin Kebbi"		=>		"Kebbi International Airport",
+	Dutse				=>		"Dutse International Airport",
+	Jalingo				=>		"Jalingo Airport",
+	Katsina				=>		"Katsina Airport",
+	Makurdi				=>		"Makurdi Airport",
+	Minna				=>		"Minna Airport",
+	Warri				=>		"Warri Airport",
+	Yenagoa				=>		"Bayelsa International Airport",
+	Zaria				=>		"Zaria Airport"
 );
 my @dates;								# An array of random dates for sample flights
 
