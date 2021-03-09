@@ -44,7 +44,7 @@ my @cities = keys %cities_airports;
 my @dates;								# An array of random dates for sample flights
 
 # Connect to the flights.db database
-my $db = DBI -> connect("dbi:SQLite:dbname=flights.db", "", "");
+my $db = DBI -> connect("dbi:SQLite:dbname=flights.db", "", "", {Autocommit => 0});
 
 # Prepare the 'prepare statement'
 my $prep = $db -> prepare(<<"END-SQL");
@@ -65,6 +65,7 @@ for(1 .. $flightCount) {
 
 	$prep -> execute($_, $date, $takeoff_city, $takeoff_airport, $terminal, $destination_city, (rand(12)));
 }
+
 
 # Returns a random date.
 sub getRandomDateTime {
