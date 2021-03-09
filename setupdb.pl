@@ -41,6 +41,7 @@ my %cities_airports = (
 	Zaria				=>		"Zaria Airport"
 );
 my @cities = keys %cities_airports;
+my @terminals = ('A' .. 'Z');
 my @dates;								# An array of random dates for sample flights
 
 # Connect to the flights.db database
@@ -61,7 +62,7 @@ for(1 .. $flightCount) {
 	my $takeoff_city = $cities[rand @cities];				# Choose a takeoff city at random
 	my $destination_city = $cities[rand @cities];			# Choose a destination city at random
 	my $takeoff_airport = $cities_airports{$takeoff_city};	# Choose a random takeoff airport based on takeoff city
-	my $terminal = ('A' .. 'Z')[rand('A'..'Z')];
+	my $terminal = $terminals[rand @terminals];				# Choose a random terminal
 
 	$prep -> execute($_, $date, $takeoff_city, $takeoff_airport, $terminal, $destination_city, (rand(12)));
 }
