@@ -23,4 +23,9 @@ router.post('/', function(req, res, next) {
 })
 
 
+// Make a POST request to /flights/search to search for a flight.
+router.post('/search', function(req, res, next) {
+
+})
+
 module.exports = router;
