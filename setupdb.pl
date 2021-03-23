@@ -96,10 +96,18 @@ sub getRandomDateTime {
 		$day = int(rand(28)) + 1;
 	}
 
-	my $hour = int(rand(24));
-	my $minute = int(rand(60));
-	my $second = int(rand(60));
 
 	#sprintf "2021-$month-$day $hour:$minute:$second", $month, $day, $hour, $minute, $second;
 	sprintf "2021-%02d-%02dT%02d:%02d:%02d", $month, $day, $hour, $minute, $second;
+}
+
+
+sub getRandomDate {
+
+}
+
+sub getRandomTime {
+	my $hour = int(rand(24));
+	my $minute = int(rand(60));
+	sprintf "%02:%02", $hour, $minute;
 }
