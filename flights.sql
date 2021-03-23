@@ -1,7 +1,8 @@
 create table if not exists flights (
 	flight_id integer primary key,
 	flight_number integer not null,
-	takeoff datetime not null,
+	takeoff_date datetime not null,
+	takeoff_time datetime not null,
 	takeoff_city varchar(128) not null,
 	takeoff_airport varchar(128) not null,
 	takeoff_terminal varchar(16) not null,
