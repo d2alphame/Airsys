@@ -50,28 +50,29 @@ my $db = DBI -> connect("dbi:SQLite:dbname=flights.db", "", "", {AutoCommit => 0
 # Prepare the 'prepare statement'
 my $prep = $db -> prepare(<<"END-SQL");
 insert into flights
-(flight_number, takeoff, takeoff_city, takeoff_airport, takeoff_terminal, destination_city, flight_duration)
-values(?, ?, ?, ?, ?, ?, ?)
+(flight_number, takeoff_date, takeoff_time, takeoff_city, takeoff_airport, takeoff_terminal, destination_city, flight_duration)
+values(?, ?, ?, ?, ?, ?, ?, ?)
 END-SQL
 
 
 # Insert random flights into the flights table. For demo purposes only
 for(1 .. $flightCount) {
 
-	my $date = getRandomDateTime();							# Generate a random take off date
+	my $date = getRandomDate();								# Generate a random take off date
+	my $time = getRandomTime();								# Generate a random take off time
 	my $takeoff_city = $cities[rand @cities];				# Choose a takeoff city at random
 	my $destination_city = $cities[rand @cities];			# Choose a destination city at random
 	my $takeoff_airport = $cities_airports{$takeoff_city};	# Choose a random takeoff airport based on takeoff city
 	my $terminal = $terminals[rand @terminals];				# Choose a random terminal
 
-	$prep -> execute($_, $date, $takeoff_city, $takeoff_airport, $terminal, $destination_city, (rand(12)));
+	$prep -> execute($_, $date, $time, $takeoff_city, $takeoff_airport, $terminal, $destination_city, (rand(12)));
 }
 
 $db -> commit;
 
 
 # Returns a random date.
-sub getRandomDateTime {
+sub getRandomDate {
 
 	my $month = int(rand(12)) + 1;			# Generate a random month
 	my $day;								# For a random date
@@ -98,13 +99,9 @@ sub getRandomDateTime {
 
 
 	#sprintf "2021-$month-$day $hour:$minute:$second", $month, $day, $hour, $minute, $second;
-	sprintf "2021-%02d-%02dT%02d:%02d:%02d", $month, $day, $hour, $minute, $second;
+	sprintf "2021-%02d-%02d", $month, $day;
 }
 
-
-sub getRandomDate {
-
-}
 
 sub getRandomTime {
 	my $hour = int(rand(24));
