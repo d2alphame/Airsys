@@ -23,8 +23,8 @@ router.post('/', function(req, res, next) {
 })
 
 
-// Make a POST request to /flights/search to search for a flight.
-router.post('/search', function(req, res, next) {
+// Make a GET request to /flights/search to search for a flight.
+router.get('/search', function(req, res, next) {
 
 })
 
