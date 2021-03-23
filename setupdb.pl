@@ -65,7 +65,7 @@ for(1 .. $flightCount) {
 	my $takeoff_airport = $cities_airports{$takeoff_city};	# Choose a random takeoff airport based on takeoff city
 	my $terminal = $terminals[rand @terminals];				# Choose a random terminal
 
-	$prep -> execute($_, $date, $time, $takeoff_city, $takeoff_airport, $terminal, $destination_city, (rand(12)));
+	$prep -> execute($_, $date, $time, $takeoff_city, $takeoff_airport, $terminal, $destination_city, int(rand(6)) + 1);
 }
 
 $db -> commit;
@@ -106,5 +106,5 @@ sub getRandomDate {
 sub getRandomTime {
 	my $hour = int(rand(24));
 	my $minute = int(rand(60));
-	sprintf "%02:%02", $hour, $minute;
+	sprintf "%02d:%02d", $hour, $minute;
 }
