@@ -79,7 +79,7 @@ for(@cities) {
 }
 print $citiesjs "const cities = [\n\t";
 say $citiesjs join(",\n\t", @quoted_cities);
-say $citiesjs "]\nmodules.exports = cities";
+say $citiesjs "]\nmodule.exports = cities";
 
 # Returns a random date.
 sub getRandomDate {
