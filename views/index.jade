@@ -7,13 +7,17 @@ block content
     form#booking(onsubmit="return false")
       .form-group
         label(for="from") From
-        input.form-control#from(name="takeoffCity")
+        select.form-control#from(name="takeoffCity")
+          each city in cities
+            option= city
       .form-group
         label(for="to") To
-        input.form-control#to(name="destinationCity")
+        select.form-control#to(name="destinationCity")
+          each city in cities
+            option= city
       .form-group
         label(for="date") Date
-        input.form-control#date(name="takeoffDate")
+        input.form-control#date(name="takeoffDate", type="date")
       button.btn.btn-primary(onclick="findFlights()") Find Flights
   script.
     function findFlights() {
