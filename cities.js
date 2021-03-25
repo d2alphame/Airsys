@@ -29,4 +29,4 @@ const cities = [
 	"Bauchi",
 	"Uyo"
 ]
-modules.exports = cities
+module.exports = cities
