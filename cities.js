@@ -1,4 +1,32 @@
 const cities = [
-	
+	"Enugu",
+	"Jos",
+	"Asaba",
+	"Yola",
+	"Benin",
+	"Zaria",
+	"Birnin Kebbi",
+	"Port Harcourt",
+	"Kaduna",
+	"Owerri",
+	"Kano",
+	"Akure",
+	"Lagos",
+	"Warri",
+	"Minna",
+	"Yenagoa",
+	"Ibadan",
+	"Calabar",
+	"Sokoto",
+	"Maiduguri",
+	"Jalingo",
+	"Abuja",
+	"Ilorin",
+	"Gombe",
+	"Katsina",
+	"Makurdi",
+	"Dutse",
+	"Bauchi",
+	"Uyo"
 ]
-module.exports = cities
+modules.exports = cities

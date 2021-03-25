@@ -70,6 +70,16 @@ for(1 .. $flightCount) {
 
 $db -> commit;
 
+# Once done generate the cities.js file.
+open my $citiesjs, '>', 'cities.js';
+my @quoted_cities;
+for(@cities) {
+	my $qcity = '"' . $_ . '"';
+	push @quoted_cities, $qcity;
+}
+print $citiesjs "const cities = [\n\t";
+say $citiesjs join(",\n\t", @quoted_cities);
+say $citiesjs "]\nmodules.exports = cities";
 
 # Returns a random date.
 sub getRandomDate {
