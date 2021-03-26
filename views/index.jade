@@ -22,16 +22,18 @@ block content
   script.
     function findFlights() {
       
-      let formData = {
-        takeoffCity: document.getElementById("from").value,
-        destinationCity: document.getElementById("to").value,
-        takeoffDate: document.getElementById("date").value
-      }
-
-      fetch('/flights/search')
+      let takeoffCity = document.getElementById("from").value
+      let destinationCity = document.getElementById("to").value
+      let takeoffDate = document.getElementById("date").value
+      
+      alert('here')
+      const url = `/flights/search?from=${takeoffCity}&to=${destinationCity}&date=${takeoffDate}`
+      alert('now here')
+      alert(url)
+      fetch(url)
       .then(res => res.json())
       .then(data => {
-        alert(data.duplicate)     // Later do some stuff here.
+        //alert(data.duplicate)     // Later do some stuff here.
       })
     }
 
