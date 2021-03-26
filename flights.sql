@@ -9,7 +9,9 @@ create table if not exists flights (
 	destination_city varchar(128) not null,
 	flight_duration tinyint not null,
 	next_row tinyint not null,
-	
+	next_col tinyint not null,
+	max_rows tinyint not null,
+	capacity tinyint not null
 );
 
 create table if not exists bookings (
