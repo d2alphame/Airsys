@@ -7,7 +7,9 @@ create table if not exists flights (
 	takeoff_airport varchar(128) not null,
 	takeoff_terminal varchar(16) not null,
 	destination_city varchar(128) not null,
-	flight_duration tinyint not null
+	flight_duration tinyint not null,
+	next_row tinyint not null,
+	
 );
 
 create table if not exists bookings (
