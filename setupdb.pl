@@ -50,8 +50,8 @@ my $db = DBI -> connect("dbi:SQLite:dbname=flights.db", "", "", {AutoCommit => 0
 # Prepare the 'prepare statement'
 my $prep = $db -> prepare(<<"END-SQL");
 insert into flights
-(flight_number, takeoff_date, takeoff_time, takeoff_city, takeoff_airport, takeoff_terminal, destination_city, flight_duration, next_row, next_col, max_rows)
-values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+(flight_number, takeoff_date, takeoff_time, takeoff_city, takeoff_airport, takeoff_terminal, destination_city, flight_duration, next_row, next_col, max_rows seats_left)
+values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 END-SQL
 
 
@@ -64,8 +64,10 @@ for(1 .. $flightCount) {
 	my $destination_city = $cities[rand @cities];			# Choose a destination city at random
 	my $takeoff_airport = $cities_airports{$takeoff_city};	# Choose a random takeoff airport based on takeoff city
 	my $terminal = $terminals[rand @terminals];				# Choose a random terminal
+	my $max_rows = int(rand(10)) + 5;						# Maximum number of rows on plane
+	my $seats_left = $max_rows * 4;							# Seats left on the aircraft
 
-	$prep -> execute($_, $date, $time, $takeoff_city, $takeoff_airport, $terminal, $destination_city, int(rand(6)) + 1, 1, 0, int(rand(10)) + 5);
+	$prep -> execute($_, $date, $time, $takeoff_city, $takeoff_airport, $terminal, $destination_city, int(rand(6)) + 1, 1, 0, $max_rows, $seats_left);
 }
 
 $db -> commit;

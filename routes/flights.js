@@ -25,7 +25,12 @@ router.post('/', function(req, res, next) {
 
 // Make a GET request to /flights/search to search for a flight.
 router.get('/search', function(req, res, next) {
-	
+	console.log(req.query)
+	let takeoffCity = req.query.from
+	let destinationCity = req.query.to
+	let takeoffTime = req.query.date
+
+	let sql = 'select * from flights where takeoff_city = ? and destination_city = ? and takeoff_time = ? seats_left > 0'
 	res.json({duplicate: "None"})
 })
 

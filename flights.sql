@@ -10,7 +10,8 @@ create table if not exists flights (
 	flight_duration tinyint not null,
 	next_row tinyint not null,
 	next_col tinyint not null,
-	max_rows tinyint not null
+	max_rows tinyint not null,
+	seats_left tinyint not null
 );
 
 create table if not exists bookings (
