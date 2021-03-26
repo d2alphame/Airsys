@@ -25,11 +25,9 @@ block content
       let takeoffCity = document.getElementById("from").value
       let destinationCity = document.getElementById("to").value
       let takeoffDate = document.getElementById("date").value
-      
-      alert('here')
+
       const url = `/flights/search?from=${takeoffCity}&to=${destinationCity}&date=${takeoffDate}`
-      alert('now here')
-      alert(url)
+
       fetch(url)
       .then(res => res.json())
       .then(data => {
