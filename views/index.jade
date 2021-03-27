@@ -73,6 +73,7 @@ block content
             var btn = document.createElement('button')
             btn.classList.add('list-group-item', 'list-group-item-action')
             btn.textContent = `${processTakeoffDate(flight.takeoff_date)}, Take Off Time: ${processTakeoffTime(flight.takeoff_time)} ${flight.takeoff_city} to ${flight.destination_city}`
+            btn.setAttribute('data-flight-number', flight.flight_number)
             fragment.appendChild(btn)
           })
           elem.appendChild(fragment)
@@ -119,3 +120,6 @@ block content
 
       return `${hr}:${timeElems[1]}${am_pm}`
     }
+
+
+    // Function to book a flight
