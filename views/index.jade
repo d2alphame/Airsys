@@ -66,7 +66,7 @@ block content
           data.forEach((flight) => {
             var li = document.createElement('li')
             li.classList.add('list-group-item')
-            li.textContent = flight.takeoff_city
+            li.textContent = flight.takeoff_city + " " + processTakeoffDate(flight.takeoff_date)
             fragment.appendChild(li)
           })
           elem.appendChild(fragment)
@@ -77,11 +77,27 @@ block content
     }
 
     // Function to convert the date from yyyy-mm-dd to dd-MMM-yyyy
-    function processTakeOffDate(takeoffDate) {
+    function processTakeoffDate(takeoffDate) {
+      const months = {
+        "01": "Jan",
+        "02": "Feb",
+        "03": "Mar",
+        "04": "Apr",
+        "05": "May",
+        "06": "Jun",
+        "07": "Jul",
+        "08": "Aug",
+        "09": "Sep",
+        "10": "Oct",
+        "11": "Nov",
+        "12": "Dec"
+      }
 
+      const dateElems = takeoffDate.split("-")
+      return `${dateElems[2]}-${months[dateElems[1]]}-${dateElems[0]}`
     }
 
     // Function to convert takeoff time from 24hr clock to 12hr clock
     function processTakeOffTime(takeoffTime) {
-      
+
     }
