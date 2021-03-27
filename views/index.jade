@@ -22,13 +22,18 @@ block content
         input.form-control#date(name="takeoffDate", type="date")
       button.btn.btn-primary(onclick="findFlights()") Find Flights
     .modal.fade#modalFlightsFound(tabindex="-1", role="dialog", aria-hidden="true")
-      .modal-dialog.modal-lg(role="document")
+      .modal-dialog.modal-xl(role="document")
         .modal-content
           .modal-header
             h5.modal-title Click on a Flight to Book
           .modal-body#flightsFound
 
+
   script.
+
+    // The flight number the user wants to book for
+    var flightToBook
+
     function findFlights() {
       
       let takeoffCity = document.getElementById("from").value
@@ -74,7 +79,7 @@ block content
             btn.classList.add('list-group-item', 'list-group-item-action')
             btn.textContent = `${processTakeoffDate(flight.takeoff_date)}, Take Off Time: ${processTakeoffTime(flight.takeoff_time)}, ${flight.takeoff_city} to ${flight.destination_city}`
             btn.setAttribute('data-flight-number', flight.flight_number)
-            btn.setAttribute('onclick', 'bookFlight(this.data-flight-number)')
+            btn.setAttribute('onclick', 'bookFlight(this)')
             fragment.appendChild(btn)
           })
           elem.appendChild(fragment)
@@ -124,6 +129,6 @@ block content
 
 
     // Function to book a flight
-    function bookFlight(flightNumber) {
-      alert(flightNumber)
+    function bookFlight(flight) {
+      flightToBook = flight.getAttribute('data-flight-number')
     }
