@@ -25,7 +25,7 @@ block content
       .modal-dialog.modal-lg(role="document")
         .modal-content
           .modal-header
-            h5.modal-title Book a Flight
+            h5.modal-title Click on a Flight to Book
           .modal-body#flightsFound
 
   script.
@@ -72,7 +72,6 @@ block content
           data.forEach((flight) => {
             var li = document.createElement('li')
             li.classList.add('list-group-item')
-            // li.textContent = flight.takeoff_city + " " + processTakeoffDate(flight.takeoff_date) + " " + processTakeoffTime(flight.takeoff_time)
             li.textContent = `${processTakeoffDate(flight.takeoff_date)} ${processTakeoffTime(flight.takeoff_time) } ${flight.takeoff_city} to ${flight.destination_city}`
             fragment.appendChild(li)
           })
