@@ -25,11 +25,15 @@ router.post('/', function(req, res, next) {
 })
 
 
+
 // Make a GET request to /flights/search to search for a flight.
 router.get('/search', function(req, res, next) {
 
-	let sql = 'select * from flights where takeoff_city = ? and destination_city = ? and takeoff_date = ? and seats_left > 0'
-	db.get(sql, [req.query.from, req.query.to, req.query.date], (err, row) => {
+	let sql = 'select flight_number, takeoff_date, takeoff_time, takeoff_city, takeoff_airport, takeoff_terminal, destination_city, flight_duration from flights where takeoff_city = ? and destination_city = ? and takeoff_date = ? and seats_left > 0'
+	
+	// db.get(sql, [req.query.from, req.query.to, req.query.date], (err, row) => {
+	// To get only one row, use db.get instead of db.all
+	db.all(sql, [req.query.from, req.query.to, req.query.date], (err, rows) => {
 		if(err){
 
 			// TODO: Log the error here
@@ -37,12 +41,12 @@ router.get('/search', function(req, res, next) {
 			res.json({error: "Your request could not be completed at the moment. Try again in a few minutes"})
 		}
 		else {
-			if(row){
-				console.log(row)
+			if(rows){
+				console.log(rows)
 				res.json({success: "Pick a flight"})
 			}
 			else{
-				console.log(row)
+				console.log(rows)
 				let takeoff = req.query.from; let destination = req.query.to
 				res.json({ message: `No flights from ${takeoff} to ${destination} on the given date` })
 			}
