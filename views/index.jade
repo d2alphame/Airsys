@@ -21,7 +21,7 @@ block content
         label(for="date") Date
         input.form-control#date(name="takeoffDate", type="date")
       button.btn.btn-primary(onclick="findFlights()") Find Flights
-    #flightsFound.mt-5
+    .modal.fade#flightsFound
   script.
     function findFlights() {
       
