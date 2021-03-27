@@ -4,7 +4,6 @@ block content
   .container-fluid.p-5
     div.alert.alert-danger#flightSearchAlertDanger(role="alert", style="display: none;")
     div.alert.alert-info#flightSearchAlertInfo(role="alert", style="display: none;")
-    div.alert.alert-success#flightSearchAlertSuccess(role="alert", style="display: none;")
     h1 Airsys
     p Welcome to Airsys - An Airline Reservation System
     form#booking(onsubmit="return false")
@@ -22,6 +21,7 @@ block content
         label(for="date") Date
         input.form-control#date(name="takeoffDate", type="date")
       button.btn.btn-primary(onclick="findFlights()") Find Flights
+    #flightsFound
   script.
     function findFlights() {
       
@@ -59,7 +59,13 @@ block content
 
         }
         else {
-          
+        // If all goes well, display the flights for that day.
+          let elem = document.createElement('ul')
+          elem.classList.add('list-group')
+          let fragment = document.createDocumentFragment()
+          data.forEach((flight) => {
+
+          })
         }
         
       })
