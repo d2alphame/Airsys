@@ -72,7 +72,8 @@ block content
           data.forEach((flight) => {
             var li = document.createElement('li')
             li.classList.add('list-group-item')
-            li.textContent = flight.takeoff_city + " " + processTakeoffDate(flight.takeoff_date) + " " + processTakeoffTime(flight.takeoff_time)
+            // li.textContent = flight.takeoff_city + " " + processTakeoffDate(flight.takeoff_date) + " " + processTakeoffTime(flight.takeoff_time)
+            li.textContent = `${processTakeoffDate(flight.takeoff_date)} ${processTakeoffTime(flight.takeoff_time) } ${flight.takeoff_city} to ${flight.destination_city}`
             fragment.appendChild(li)
           })
           elem.appendChild(fragment)
