@@ -64,8 +64,13 @@ block content
           elem.classList.add('list-group')
           let fragment = document.createDocumentFragment()
           data.forEach((flight) => {
-
+            var li = document.createElement('li')
+            li.classList.add('list-group-item')
+            li.textContent = flight.takeoff_city
+            fragment.appendChild(li)
           })
+          elem.appendChild(fragment)
+          document.getElementById('flightsFound').appendChild(elem)
         }
         
       })
