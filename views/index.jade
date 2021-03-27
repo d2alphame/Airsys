@@ -154,6 +154,26 @@ block content
       flightToBook = flight.getAttribute('data-flight-number')
     }
 
+
+    // Actually book the flight
     function book() {
-      //
+      let booking = {
+        firstName: document.getElementById("firstName").value,
+        lastName: document.getElementById("lastName").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        flight: flightToBook
+      }
+
+      fetch('/bookings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(booking)
+      })
+        .then(res => res.json())
+        .then(data => {
+
+        })
     }
