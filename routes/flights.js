@@ -41,7 +41,7 @@ router.get('/search', function(req, res, next) {
 			res.json({error: "Your request could not be completed at the moment. Try again in a few minutes"})
 		}
 		else {
-			if(rows) {
+			if(rows.length) {
 				res.json(rows)
 			}
 			else {
