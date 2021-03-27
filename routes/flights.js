@@ -41,10 +41,10 @@ router.get('/search', function(req, res, next) {
 			res.json({error: "Your request could not be completed at the moment. Try again in a few minutes"})
 		}
 		else {
-			if(rows){
+			if(rows) {
 				res.json(rows)
 			}
-			else{
+			else {
 				let takeoff = req.query.from; let destination = req.query.to
 				res.json({ message: `No flights from ${takeoff} to ${destination} on the given date` })
 			}

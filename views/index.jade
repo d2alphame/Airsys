@@ -2,7 +2,9 @@ extends layout
 
 block content
   .container-fluid.p-5
-    div.alert.alert-danger#flightSearchAlert(role="alert")
+    div.alert.alert-danger#flightSearchAlertDanger(role="alert", style="display: none;")
+    div.alert.alert-info#flightSearchAlertInfo(role="alert", style="display: none;")
+    div.alert.alert-success#flightSearchAlertSuccess(role="alert", style="display: none;")
     h1 Airsys
     p Welcome to Airsys - An Airline Reservation System
     form#booking(onsubmit="return false")
@@ -34,10 +36,16 @@ block content
       .then(data => {
         if('error' in data) {
           // If the return message has the key 'error' in it that means there was an error
-          document.getElementById('flightSearchAlert').innerHTML = data.error
+          document.getElementById('flightSearchAlertDanger').innerHTML = data.error
+          $('#flightSearchAlertDanger').show();
         }
         else if('message' in data) {
-          document.getElementById('flightSearchAlert').innerHTML = data.message
+          document.getElementById('flightSearchAlertInfo').innerHTML = data.message
+          $('#flightSearchAlertInfo').show();
+        }
+        else {
+          document.getElementById('flightSearchAlertSuccess').innerHTML = data[0]['takeoff_city']
+          $('#flightSearchAlertSuccess').show();
         }
         
       })
