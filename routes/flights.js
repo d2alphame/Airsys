@@ -42,11 +42,9 @@ router.get('/search', function(req, res, next) {
 		}
 		else {
 			if(rows){
-				console.log(rows)
-				res.json({success: "Pick a flight"})
+				res.json(rows)
 			}
 			else{
-				console.log(rows)
 				let takeoff = req.query.from; let destination = req.query.to
 				res.json({ message: `No flights from ${takeoff} to ${destination} on the given date` })
 			}
