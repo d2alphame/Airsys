@@ -28,6 +28,14 @@ router.post('/', function(req, res, next) {
 				let nextCol = row.next_col++
 				nextCol = nextCol > 3 ? 0 : nextCol
 				let seatsLeft = row.seats_left--
+				
+				sql = 'update flights next_row = ?, next_col = ?, seats_left = ? where flight_number = ?'
+				db.run(sql, [nextRow, nextCol, seatsLeft, req.body.flight], (upError) => {
+					if(upErr) {
+						// TODO: Properly log error later
+						console.log(upErr)
+					}
+				})
 			}
 			else {
 
