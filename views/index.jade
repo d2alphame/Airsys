@@ -35,17 +35,31 @@ block content
       .then(res => res.json())
       .then(data => {
         if('error' in data) {
-          // If the return message has the key 'error' in it that means there was an error
+        // If the return message has the key 'error' in it that means there was an error
+
+          // Alert that there is an error
           document.getElementById('flightSearchAlertDanger').innerHTML = data.error
-          $('#flightSearchAlertDanger').show();
+          $('#flightSearchAlertDanger').show()
+          setTimeout($('#flightSearchAlertDanger').hide, 3000)
+
+          // Make the alert disappear after 3 seconds
+          setTimeout(() => {
+            $('#flightSearchAlertDanger').hide()
+          }, 3000)
         }
         else if('message' in data) {
+        // Alert if there's no such flight available
           document.getElementById('flightSearchAlertInfo').innerHTML = data.message
           $('#flightSearchAlertInfo').show();
+
+          // Make the alert disappear after 3 seconds
+          setTimeout(() => {
+            $('#flightSearchAlertInfo').hide()
+          }, 3000)
+
         }
         else {
-          document.getElementById('flightSearchAlertSuccess').innerHTML = data[0]['takeoff_city']
-          $('#flightSearchAlertSuccess').show();
+          
         }
         
       })
