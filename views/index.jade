@@ -66,7 +66,7 @@ block content
           data.forEach((flight) => {
             var li = document.createElement('li')
             li.classList.add('list-group-item')
-            li.textContent = flight.takeoff_city + " " + processTakeoffDate(flight.takeoff_date)
+            li.textContent = flight.takeoff_city + " " + processTakeoffDate(flight.takeoff_date) + " " + processTakeoffTime(flight.takeoff_time)
             fragment.appendChild(li)
           })
           elem.appendChild(fragment)
@@ -97,7 +97,18 @@ block content
       return `${dateElems[2]}-${months[dateElems[1]]}-${dateElems[0]}`
     }
 
-    // Function to convert takeoff time from 24hr clock to 12hr clock
-    function processTakeOffTime(takeoffTime) {
 
+    // Function to convert takeoff time from 24hr clock to 12hr clock
+    function processTakeoffTime(takeoffTime) {
+      const timeElems = takeoffTime.split(":")
+      var hr = parseInt(timeElems[0], 10)
+      const am_pm = hr > 12 ? "pm" : "am"
+      if(hr === 0) {
+        hr = 12
+      }
+      else if(hr > 12) {
+        hr -= 12
+      }
+
+      return `${hr}:${timeElems[1]}${am_pm}`
     }
