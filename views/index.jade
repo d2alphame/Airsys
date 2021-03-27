@@ -27,7 +27,7 @@ block content
           .modal-header
             h5.modal-title Click on a Flight to Book
           .modal-body#flightsFound
-            form#bookingForm(onsubmit="return false")
+            form.collapse#bookingForm(onsubmit="return false")
               .form-group
                 label(for="firstName") Firstname
                 input.form-control#firstName(name="firstName")
@@ -97,6 +97,10 @@ block content
             btn.textContent = `${processTakeoffDate(flight.takeoff_date)}, Take Off Time: ${processTakeoffTime(flight.takeoff_time)}, ${flight.takeoff_city} to ${flight.destination_city}`
             btn.setAttribute('data-flight-number', flight.flight_number)
             btn.setAttribute('onclick', 'bookFlight(this)')
+            btn.setAttribute('data-toggle', 'collapse')
+            btn.setAttribute('data-target', '#bookingForm')
+            btn.setAttribute('aria-expanded', 'false')
+            btn.setAttribute('aria-controls', 'bookingForm')
             fragment.appendChild(btn)
           })
           elem.appendChild(fragment)
@@ -148,4 +152,8 @@ block content
     // Function to book a flight
     function bookFlight(flight) {
       flightToBook = flight.getAttribute('data-flight-number')
+    }
+
+    function book() {
+      //
     }
