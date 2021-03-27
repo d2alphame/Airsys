@@ -2,6 +2,7 @@ extends layout
 
 block content
   .container-fluid.p-5
+    div.alert.alert-danger#flightSearchAlert(role="alert")
     h1 Airsys
     p Welcome to Airsys - An Airline Reservation System
     form#booking(onsubmit="return false")
@@ -31,7 +32,14 @@ block content
       fetch(url)
       .then(res => res.json())
       .then(data => {
-        //alert(data.duplicate)     // Later do some stuff here.
+        if('error' in data) {
+          // If the return message has the key 'error' in it that means there was an error
+          document.getElementById('flightSearchAlert').innerHTML = data.error
+        }
+        else if('message' in data) {
+          document.getElementById('flightSearchAlert').innerHTML = data.message
+        }
+        
       })
     }
 
