@@ -10,7 +10,7 @@ let db = new sqlite3.Database('../flights.db');
 
 // Make a request to this route make a booking 
 router.post('/', function(req, res, next) {
-
+	console.log(req.body)
 })
 
 // Make a request to this route to cancel a booking

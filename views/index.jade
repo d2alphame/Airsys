@@ -72,8 +72,9 @@ block content
           data.forEach((flight) => {
             var btn = document.createElement('button')
             btn.classList.add('list-group-item', 'list-group-item-action')
-            btn.textContent = `${processTakeoffDate(flight.takeoff_date)}, Take Off Time: ${processTakeoffTime(flight.takeoff_time)} ${flight.takeoff_city} to ${flight.destination_city}`
+            btn.textContent = `${processTakeoffDate(flight.takeoff_date)}, Take Off Time: ${processTakeoffTime(flight.takeoff_time)}, ${flight.takeoff_city} to ${flight.destination_city}`
             btn.setAttribute('data-flight-number', flight.flight_number)
+            btn.setAttribute('onclick', 'bookFlight(this.data-flight-number)')
             fragment.appendChild(btn)
           })
           elem.appendChild(fragment)
@@ -123,3 +124,6 @@ block content
 
 
     // Function to book a flight
+    function bookFlight(flightNumber) {
+      alert(flightNumber)
+    }
