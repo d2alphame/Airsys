@@ -21,7 +21,7 @@ block content
         label(for="date") Date
         input.form-control#date(name="takeoffDate", type="date")
       button.btn.btn-primary(onclick="findFlights()") Find Flights
-    #flightsFound
+    #flightsFound.mt-5
   script.
     function findFlights() {
       
@@ -76,4 +76,12 @@ block content
       })
     }
 
-    
+    // Function to convert the date from yyyy-mm-dd to dd-MMM-yyyy
+    function processTakeOffDate(takeoffDate) {
+
+    }
+
+    // Function to convert takeoff time from 24hr clock to 12hr clock
+    function processTakeOffTime(takeoffTime) {
+      
+    }
