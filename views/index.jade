@@ -21,7 +21,13 @@ block content
         label(for="date") Date
         input.form-control#date(name="takeoffDate", type="date")
       button.btn.btn-primary(onclick="findFlights()") Find Flights
-    .modal.fade#flightsFound
+    .modal.fade#modalFlightsFound(tabindex="-1", role="dialog", aria-hidden="true")
+      .modal-dialog(role="document")
+        .modal-content
+          .modal-header
+            h5.modal-title Book a Flight
+          .modal-body#flightsFound
+
   script.
     function findFlights() {
       
@@ -71,6 +77,7 @@ block content
           })
           elem.appendChild(fragment)
           document.getElementById('flightsFound').appendChild(elem)
+          $('#modalFlightsFound').modal('show')
         }
         
       })
