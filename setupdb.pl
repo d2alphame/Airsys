@@ -50,7 +50,7 @@ my $db = DBI -> connect("dbi:SQLite:dbname=flights.db", "", "", {AutoCommit => 0
 # Prepare the 'prepare statement'
 my $prep = $db -> prepare(<<"END-SQL");
 insert into flights
-(flight_number, takeoff_date, takeoff_time, takeoff_city, takeoff_airport, takeoff_terminal, destination_city, flight_duration, next_row, next_col, max_rows seats_left)
+(flight_number, takeoff_date, takeoff_time, takeoff_city, takeoff_airport, takeoff_terminal, destination_city, flight_duration, next_row, next_col, max_rows, seats_left)
 values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 END-SQL
 
