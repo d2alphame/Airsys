@@ -205,13 +205,12 @@ block content
           }, 3000)
           break;
 
-        case AlertType.SUCCESS
+        case AlertType.SUCCESS:
           flightSearchAlertSuccess.innerHTML = alertMessage
           $('#flightSearchAlertSuccess').show()    // Show the alert
           // Make it disappear after 3 seconds
           setTimeout(() => {
             $('#flightSearchAlertSuccess').hide()
           }, 3000)
-          break;
       }
     }
