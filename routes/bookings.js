@@ -15,7 +15,7 @@ router.post('/', function(req, res, next) {
 	
 	// Select the appropriate flight from the flight table
 	let sql = 'select * from flights where flight_number = ?'
-	const { firstName, lastName, email, phone, flight } = req.body
+	const { firstName, lastName, middleName, email, phone, flight } = req.body
 	db.get(sql, [flight], (err, row) => {
 		if(err) {
 			// TODO: Log error here
@@ -42,21 +42,32 @@ router.post('/', function(req, res, next) {
 						sql = 'insert into bookings (flight_id, booking_number, flight_number, seat_number, first_name, last_name, middle_name, email, phone) values (?, ?, ?, ?, ?, ?, ?, ?, ?)'
 						let bookingNumber = crypto.randomBytes(4).toString('hex')
 						let seatNumber = "" + seatRow + seatCol
-						db.run(sql, [flight, bookingNumber, flight, seatNumber, firstName, lastName, "", req.body.email, req.body.phone], (insErr) => {
+						db.run(sql, [flight, bookingNumber, flight, seatNumber, firstName, lastName, middleName, email, phone], (insErr) => {
 							if(insErr) {
 								// TODO: Proper logging
 								console.log(insErr)
 								res.json({ error: "Your request could not be completed"})
 							}
 							else {
-								res
+								res.json({
+									bookingNumber,
+									seatNumber,
+									flight,
+									firstName,
+									lastName,
+									middleName,
+									email,
+									phone
+								})
 							}
 						})
 					}
 				})
 			}
 			else {
-
+				// TODO: Use a proper logging
+				console.log(row)
+				res.json({message : "Your request could not be completed"})
 			}
 		}
 	})
