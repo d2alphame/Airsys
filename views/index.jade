@@ -173,7 +173,17 @@ block content
         .then(res => res.json())
         .then(data => {
           if('error' in data) {
-
+            $('#modalFlightsFound').modal('hide')
+            showAlert(AlertType.DANGER, data.error)
+          }
+          else if('message' in data) {
+            $('#modalFlightsFound').modal('hide')
+            showAlert(AlertType.INFO, data.message)
+          }
+          else {
+            $('#bookingForm').collapse('toggle')            // Hide the booking form first
+            $('#modalFlightsFound').modal('hide')           // Close the booking modal
+            showAlert(AlertType.SUCCESS, 'Your flight has been booked. Check your email or phone for details')
           }
         })
     }
@@ -190,27 +200,27 @@ block content
         case AlertType.DANGER:
           flightSearchAlertDanger.innerHTML = alertMessage
           $('#flightSearchAlertDanger').show()    // Show the alert
-          // Make it disappear after 3 seconds
+          // Make it disappear after 6 seconds
           setTimeout(() => {
             $('#flightSearchAlertDanger').hide()
-          }, 3000)
+          }, 6000)
           break;
        
         case AlertType.INFO:
           flightSearchAlertInfo.innerHTML = alertMessage
           $('#flightSearchAlertInfo').show()    // Show the alert
-          // Make it disappear after 3 seconds
+          // Make it disappear after 6 seconds
           setTimeout(() => {
             $('#flightSearchAlertInfo').hide()
-          }, 3000)
+          }, 6000)
           break;
 
         case AlertType.SUCCESS:
           flightSearchAlertSuccess.innerHTML = alertMessage
           $('#flightSearchAlertSuccess').show()    // Show the alert
-          // Make it disappear after 3 seconds
+          // Make it disappear after 6 seconds
           setTimeout(() => {
             $('#flightSearchAlertSuccess').hide()
-          }, 3000)
+          }, 6000)
       }
     }
