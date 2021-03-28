@@ -36,9 +36,12 @@ router.post('/', function(req, res, next) {
 				const cols = ["A", "B", "C", "D"]
 				let seatRow = row.next_row
 				let seatCol = cols[row.next_col]
-				let nextRow = row.next_row; nextRow++
 				let nextCol = row.next_col; nextCol++
-				nextCol = nextCol > 3 ? 0 : nextCol
+				let nextRow = row.next_row
+				if(nextCol > 3) {
+					nextRow++
+					nextCol = 0
+				}
 				let seatsLeft = row.seats_left; seatsLeft--
 
 				sql = 'update flights set next_row = ?, next_col = ?, seats_left = ? where flight_number = ?'
