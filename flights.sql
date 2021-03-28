@@ -25,5 +25,6 @@ create table if not exists bookings (
 	middle_name varchar(32) not null,
 	email varchar(128) not null,
 	phone char(32),
+	can_exhange tinyint default 0,
 	FOREIGN KEY(flight_id) REFERENCES flights(flight_id)
 );
