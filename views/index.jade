@@ -35,6 +35,9 @@ block content
                 label(for="lastName") Lastname
                 input.form-control#lastName(name="lastName")
               .form-group
+                label(for="middleName") Middle Name
+                input.form-control#middleName(name="middleName")
+              .form-group
                 label(for="email") Email
                 input.form-control#email(name="email", type="email")
               .form-group
@@ -160,6 +163,7 @@ block content
       let booking = {
         firstName: document.getElementById("firstName").value,
         lastName: document.getElementById("lastName").value,
+        middleName: document.getElementById("middleName").value,
         email: document.getElementById("email").value,
         phone: document.getElementById("phone").value,
         flight: flightToBook
