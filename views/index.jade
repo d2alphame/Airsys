@@ -28,6 +28,9 @@ block content
           .modal-header
             h5.modal-title Click on a Flight to Book
           .modal-body#flightsFound
+            .collapse#ticketInformation
+              p.font-weight-bold.font-italics#ticketNumber
+
             form.collapse#bookingForm(onsubmit="return false")
               .form-group
                 label(for="firstName") Firstname
@@ -45,10 +48,6 @@ block content
                 label(for="phone") Phone
                 input.form-control#phone(name="phone", type="tel")
               button.btn.btn-primary(onclick="book()") Book Flight
-
-
-            
-
 
   script.
 
