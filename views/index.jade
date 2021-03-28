@@ -4,6 +4,7 @@ block content
   .container-fluid.p-5
     div.alert.alert-danger#flightSearchAlertDanger(role="alert", style="display: none;")
     div.alert.alert-info#flightSearchAlertInfo(role="alert", style="display: none;")
+    div.alert.alert-success#flightSearchAlertSuccess(role="alert", style="display: none;")
     h1 Airsys
     p Welcome to Airsys - An Airline Reservation System
     form(onsubmit="return false")
@@ -53,6 +54,12 @@ block content
 
     // The flight number the user wants to book for
     var flightToBook
+    
+    const AlertType = {
+      DANGER: 'danger',
+      INFO: 'info',
+      SUCCESS: 'success'
+    }
 
     function findFlights() {
       
@@ -69,24 +76,11 @@ block content
         // If the return message has the key 'error' in it that means there was an error
 
           // Alert that there is an error
-          document.getElementById('flightSearchAlertDanger').innerHTML = data.error
-          $('#flightSearchAlertDanger').show()
-          setTimeout($('#flightSearchAlertDanger').hide, 3000)
-
-          // Make the alert disappear after 3 seconds
-          setTimeout(() => {
-            $('#flightSearchAlertDanger').hide()
-          }, 3000)
+          showAlert(AlertType.DANGER, data.error)
         }
         else if('message' in data) {
         // Alert if there's no such flight available
-          document.getElementById('flightSearchAlertInfo').innerHTML = data.message
-          $('#flightSearchAlertInfo').show();
-
-          // Make the alert disappear after 3 seconds
-          setTimeout(() => {
-            $('#flightSearchAlertInfo').hide()
-          }, 3000)
+          showAlert(AlertType.INFO, data.message)
 
         }
         else {
@@ -178,6 +172,46 @@ block content
       })
         .then(res => res.json())
         .then(data => {
-          alert(data.firstName)
+          if('error' in data) {
+
+          }
         })
+    }
+
+
+    // Function to display an alert.
+    function showAlert(alertType, alertMessage) {
+
+      var flightSearchAlertDanger = document.getElementById('flightSearchAlertDanger')
+      var flightSearchAlertInfo = document.getElementById('flightSearchAlertInfo')
+      var flightSearchAlertSuccess = document.getElementById('flightSearchAlertSuccess')
+
+      switch(alertType) {
+        case AlertType.DANGER:
+          flightSearchAlertDanger.innerHTML = alertMessage
+          $('#flightSearchAlertDanger').show()    // Show the alert
+          // Make it disappear after 3 seconds
+          setTimeout(() => {
+            $('#flightSearchAlertDanger').hide()
+          }, 3000)
+          break;
+       
+        case AlertType.INFO:
+          flightSearchAlertInfo.innerHTML = alertMessage
+          $('#flightSearchAlertInfo').show()    // Show the alert
+          // Make it disappear after 3 seconds
+          setTimeout(() => {
+            $('#flightSearchAlertInfo').hide()
+          }, 3000)
+          break;
+
+        case AlertType.SUCCESS
+          flightSearchAlertSuccess.innerHTML = alertMessage
+          $('#flightSearchAlertSuccess').show()    // Show the alert
+          // Make it disappear after 3 seconds
+          setTimeout(() => {
+            $('#flightSearchAlertSuccess').hide()
+          }, 3000)
+          break;
+      }
     }
