@@ -184,13 +184,16 @@ block content
             showAlert(AlertType.INFO, data.message)
           }
           else {
+            $('#bookingForm').collapse('toggle')            // Hide the booking form first
+            // Show the ticket information received from the server
             document.getElementById('ticketNumber').innerHTML = `Ticket Number: ${data.bookingNumber}`
             document.getElementById('flightNumber').innerHTML = `Flight ${data.flight}, ${data.takeoffCity}` + ' - ' +  `${data.destinationCity}`
             document.getElementById('flightTimeAndDate').innerHTML = `Takes off ${processTakeoffDate(data.takeoffDate)}, at ${processTakeoffTime(data.takeoffTime)}`
             document.getElementById('ticketTakeoffLocation').innerHTML = `From ${data.takeoffAirport}, Terminal ${data.takeoffTerminal}`
             document.getElementById('flightDuration').innerHTML = `${data.flightDuration} hour flight`
-            $('#bookingForm').collapse('toggle')            // Hide the booking form first
-            $('#modalFlightsFound').modal('hide')           // Close the booking modal
+            $('#ticketInformation').collapse('toggle')
+            
+            // $('#modalFlightsFound').modal('hide')           // Close the booking modal
             showAlert(AlertType.SUCCESS, 'Your flight has been booked. Check your email or phone for details')
           }
         })
