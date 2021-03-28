@@ -4,14 +4,23 @@ var express = require('express');
 var router = express.Router();
 const sqlite3 = require('sqlite3').verbose();
 var crypto = require('crypto')			// This will be necessary when generating booking number
+var path = require('path')
 
 // Open a database connection
-let db = new sqlite3.Database('../flights.db');
+var db = new sqlite3.Database(path.join(__dirname, '..', 'flights.db'), (err) => {
+	if(err) {
+		// TODO: Use proper logging
+		console.log(err)
+	}
+	else {
+		// TODO: Use proper logging later
+		// console.log("Success")
+	}
+});
 
 
 // Make a request to this route make a booking 
 router.post('/', function(req, res, next) {
-	console.log(req.body)
 	
 	// Select the appropriate flight from the flight table
 	let sql = 'select * from flights where flight_number = ?'
@@ -31,7 +40,7 @@ router.post('/', function(req, res, next) {
 				nextCol = nextCol > 3 ? 0 : nextCol
 				let seatsLeft = row.seats_left--
 				
-				sql = 'update flights next_row = ?, next_col = ?, seats_left = ? where flight_number = ?'
+				sql = 'update flights set next_row = ?, next_col = ?, seats_left = ? where flight_number = ?'
 				db.run(sql, [nextRow, nextCol, seatsLeft, flight], (upErr) => {
 					if(upErr) {
 						// TODO: Properly log error later
