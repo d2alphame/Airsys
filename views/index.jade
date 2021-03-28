@@ -31,8 +31,9 @@ block content
             .collapse#ticketInformation
               p.font-weight-bold.font-italics#ticketNumber<br />
               p.font-weight-bold.font-italics#flightNumber<br />
-              p.font-weight-bold.font-italics#ticketTimeAndDate<br />
-              p#ticketTakeoffLocation
+              p.font-weight-bold.font-italics#flightTimeAndDate<br />
+              p.font-italics#ticketTakeoffLocation<br />
+              p#flightDuration
 
             form.collapse#bookingForm(onsubmit="return false")
               .form-group
@@ -184,7 +185,10 @@ block content
           }
           else {
             document.getElementById('ticketNumber').innerHTML = `Ticket Number: ${data.bookingNumber}`
-            document.getElementById('flightNumber').innerHTML = `Flight ${data.flight}, `
+            document.getElementById('flightNumber').innerHTML = `Flight ${data.flight}, ${data.takeoffCity}` + ' - ' +  `${data.destinationCity}`
+            document.getElementById('flightTimeAndDate').innerHTML = `Takes off ${processTakeoffDate(data.takeoffDate)}, at ${processTakeoffTime(data.takeoffTime)}`
+            document.getElementById('ticketTakeoffLocation').innerHTML = `From ${data.takeoffAirport}, Terminal ${data.takeoffTerminal}`
+            document.getElementById('flightDuration').innerHTML = `${data.flightDuration} hour flight`
             $('#bookingForm').collapse('toggle')            // Hide the booking form first
             $('#modalFlightsFound').modal('hide')           // Close the booking modal
             showAlert(AlertType.SUCCESS, 'Your flight has been booked. Check your email or phone for details')
