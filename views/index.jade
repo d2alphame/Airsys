@@ -265,4 +265,33 @@ block content
     // Function to transfer ownership of a ticket
     function transfer() {
 
+      let transferData = {
+        ticket: document.getElementById("transferTicketNumber").value,
+        ownersEmail: document.getElementById("ownersEmail").value,
+        recipientsFirstName: document.getElementById("recipientsFirstName").value,
+        recipientsLastName: document.getElementById("recipientsLastName").value,
+        recipientsMiddleName: document.getElementById("recipientsMiddleName").value,
+        recipientsEmail: document.getElementById("recipientsEmail").value,
+        recipientsPhone: document.getElementById("recipientsPhone").value
+      }
+
+      fetch('/bookings/transfer', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(transferData)
+      })
+      .then(res => res.json())
+      .then(data => {
+        if('error' in data) {
+          showAlert(AlertType.DANGER, data.error)
+        }
+        else if('message' in data) {
+          showAlert(AlertType.INFO, data.message)
+        }
+        else {
+          showAlert(AlertType.SUCCESS, data.success)
+        }
+      })
     }

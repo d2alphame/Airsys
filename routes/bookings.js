@@ -97,7 +97,30 @@ router.post('/', function(req, res, next) {
 
 // Call this route to transfer ownership of a booked ticket
 router.post('/transfer', function(req, res, next) {
-
+	console.log(req.body)
+	let sql = 'select * from bookings where booking_number = ? and email = ?'
+	db.get(sql, [req.body.ticket, req.body.ownersEmail], (err, row) => {
+		if(err) {
+			console.log(err) // TODO: Do proper logging of errors
+			res.json({ error: "Your request could not be completed at the moment"})
+		}
+		else {
+			if(row) {
+				sql = 'update bookings set first_name = ?, last_name = ?, middle_name = ?, email = ?, phone = ? where booking_number = ?'
+				db.run(sql, [req.body.recipientsFirstName, req.body.recipientsLastName, req.body.recipientsMiddleName, req.body.recipientsEmail, req.body.recipientsPhone, req.body.ticket], (upErr) => {
+					if(upErr) {
+						console.log(upErr)			// TODO: Proper logging later
+					}
+					else {
+						res.json({success: `Transfer to ${req.body.recipientsFirstName} ${req.body.recipientsLastName} successful`})
+					}
+				})
+			}
+			else {
+				res.json({message: "There's a problem with your ticket or your email"})
+			}
+		}
+	})
 })
 
 
