@@ -29,7 +29,10 @@ block content
             h5.modal-title Click on a Flight to Book
           .modal-body#flightsFound
             .collapse#ticketInformation
-              p.font-weight-bold.font-italics#ticketNumber
+              p.font-weight-bold.font-italics#ticketNumber<br />
+              p.font-weight-bold.font-italics#flightNumber<br />
+              p.font-weight-bold.font-italics#ticketTimeAndDate<br />
+              p#ticketTakeoffLocation
 
             form.collapse#bookingForm(onsubmit="return false")
               .form-group
@@ -180,6 +183,8 @@ block content
             showAlert(AlertType.INFO, data.message)
           }
           else {
+            document.getElementById('ticketNumber').innerHTML = `Ticket Number: ${data.bookingNumber}`
+            document.getElementById('flightNumber').innerHTML = `Flight ${data.flight}, `
             $('#bookingForm').collapse('toggle')            // Hide the booking form first
             $('#modalFlightsFound').modal('hide')           // Close the booking modal
             showAlert(AlertType.SUCCESS, 'Your flight has been booked. Check your email or phone for details')

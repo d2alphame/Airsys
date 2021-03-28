@@ -70,7 +70,14 @@ router.post('/', function(req, res, next) {
 									lastName,
 									middleName,
 									email,
-									phone
+									phone,
+									takeoffDate: row.takeoff_date,
+									takeoffTime: row.takeoff_time,
+									takeoffCity: row.takeoff_city,
+									takeoffAirport: row.takeoff_airport,
+									takeoffTerminal: row.takeoff_terminal,
+									destinationCity: row.destination_city,
+									flightDuration: row.flight_duration
 								})
 							}
 						})
