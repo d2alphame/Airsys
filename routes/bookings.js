@@ -35,6 +35,11 @@ router.post('/', function(req, res, next) {
 						// TODO: Properly log error later
 						console.log(upErr)
 					}
+					else {
+						// Once the seat has been reserved, do the actual booking
+						sql = 'insert into bookings (flight_id, booking_number, flight_number, seat_number, first_name, last_name, middle_name, email, phone) values (?, ?, ?, ?, ?, ?, ?, ?, ?)'
+						db.run(sql, [req.body.flight, ])
+					}
 				})
 			}
 			else {
