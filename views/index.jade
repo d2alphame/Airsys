@@ -32,7 +32,7 @@ block content
               p.font-weight-bold.font-italics#ticketNumber<br />
               p.font-weight-bold.font-italics#flightNumber<br />
               p.font-weight-bold.font-italics#flightTimeAndDate<br />
-              p.font-italics#ticketTakeoffLocation<br />
+              p.font-italic#ticketTakeoffLocation<br />
               p#flightDuration
 
             form.collapse#bookingForm(onsubmit="return false")
@@ -52,6 +52,32 @@ block content
                 label(for="phone") Phone
                 input.form-control#phone(name="phone", type="tel")
               button.btn.btn-primary(onclick="book()") Book Flight
+  .container-fluid.p-5#TransferOfOwnership
+    h2 Transfer Ownership of Ticket
+    p Fill and submit this form to transfer ownership of your ticket
+    form(onsubmit="return false")
+      .form-group
+        label(for="transferTicketNumber") Ticket Number
+        input.form-control#transferTicketNumber(name="ticketNumber")
+      .form-group
+        label(for="ownersEmail") Your Email
+        input.form-control#ownersEmail(name="ownersEmail")
+      .form-group
+        label(for="recipientsFirstName") The Recipient's Firstname
+        input.form-control#recipientsFirstName(name="recipientsFirstName")
+      .form-group
+        label(for="recipientsLastName") The Recipient's Lastname
+        input.form-control#recipientsLastName(name="recipientsLastName")
+      .form-group
+        label(for="recipientsMiddleName") The Recipient's Middlename
+        input.form-control#recipientsMiddleName(name="recipientsMiddleName")
+      .form-group
+        label(for="recipientsEmail") The Recipient's Email
+        input.form-control#recipientsEmail(name="recipientsEmail", type="email")
+      .form-group
+        label(for="recipientsPhone") The Recipient's Phone
+        input.form-control#recipientsPhone(name="recipientsPhone", type="tel")
+      button.btn.btn-primary(onclick="transfer()") Transfer Ownership
 
   script.
 
@@ -192,7 +218,7 @@ block content
             document.getElementById('ticketTakeoffLocation').innerHTML = `From ${data.takeoffAirport}, Terminal ${data.takeoffTerminal}`
             document.getElementById('flightDuration').innerHTML = `${data.flightDuration} hour flight`
             $('#ticketInformation').collapse('toggle')
-            
+
             // $('#modalFlightsFound').modal('hide')           // Close the booking modal
             showAlert(AlertType.SUCCESS, 'Your flight has been booked. Check your email or phone for details')
           }
@@ -234,4 +260,9 @@ block content
             $('#flightSearchAlertSuccess').hide()
           }, 6000)
       }
+    }
+
+    // Function to transfer ownership of a ticket
+    function transfer() {
+
     }

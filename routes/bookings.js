@@ -93,6 +93,14 @@ router.post('/', function(req, res, next) {
 	})
 })
 
+
+
+// Call this route to transfer ownership of a booked ticket
+router.post('/transfer', function(req, res, next) {
+
+})
+
+
 // Make a request to this route to cancel a booking
 router.post('/remove/:id', function(req, res, next) {
 	
