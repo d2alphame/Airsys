@@ -78,7 +78,7 @@ block content
         label(for="recipientsPhone") The Recipient's Phone
         input.form-control#recipientsPhone(name="recipientsPhone", type="tel")
       button.btn.btn-primary(onclick="transfer()") Transfer Ownership
-
+  
   script.
 
     // The flight number the user wants to book for
@@ -115,6 +115,7 @@ block content
         else {
         // If all goes well, display the flights for that day.
           let elem = document.createElement('ul')
+          elem.setAttribute('id', 'flightList')
           elem.classList.add('list-group')
           let fragment = document.createDocumentFragment()
           data.forEach((flight) => {
@@ -177,6 +178,7 @@ block content
 
     // Function to book a flight
     function bookFlight(flight) {
+      document.getElementById('flightList').remove()
       flightToBook = flight.getAttribute('data-flight-number')
     }
 

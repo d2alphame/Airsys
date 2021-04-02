@@ -1,5 +1,4 @@
 // Contains routes for handling bookings.
-  
 var express = require('express');
 var router = express.Router();
 const sqlite3 = require('sqlite3').verbose();
