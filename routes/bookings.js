@@ -96,7 +96,6 @@ router.post('/', function(req, res, next) {
 
 // Call this route to transfer ownership of a booked ticket
 router.post('/transfer', function(req, res, next) {
-	console.log(req.body)
 	let sql = 'select * from bookings where booking_number = ? and email = ?'
 	db.get(sql, [req.body.ticket, req.body.ownersEmail], (err, row) => {
 		if(err) {
