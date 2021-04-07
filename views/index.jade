@@ -26,7 +26,7 @@ block content
       .modal-dialog.modal-xl(role="document")
         .modal-content
           .modal-header
-            h5.modal-title Click on a Flight to Book
+            h5.modal-title#flightHeading Click on a Flight to Book
           .modal-body#flightsFound
             .collapse#ticketInformation
               p.font-weight-bold.font-italics#ticketNumber<br />
@@ -179,6 +179,7 @@ block content
     // Function to book a flight
     function bookFlight(flight) {
       document.getElementById('flightList').remove()
+      document.getElementById('flightHeading').textContent = "Book a flight"
       flightToBook = flight.getAttribute('data-flight-number')
     }
 
