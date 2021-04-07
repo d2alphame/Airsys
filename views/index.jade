@@ -213,6 +213,7 @@ block content
             showAlert(AlertType.INFO, data.message)
           }
           else {
+            document.getElementById('flightHeading').textContent = 'Booked Flight'
             $('#bookingForm').collapse('toggle')            // Hide the booking form first
             // Show the ticket information received from the server
             document.getElementById('ticketNumber').innerHTML = `Ticket Number: ${data.bookingNumber}`
