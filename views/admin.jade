@@ -11,5 +11,8 @@ block content
 		.tab-content#allContent
 			.tab-pane.fade.show.active#allFlights(role="tabpanel", aria-labelledby="allFlightsTab")
 				h2.p-3 All Flights
+				.list-group
+					each row in rows
+						li.list.group-item= row.takeoffCity
 			.tab-pane.fade#allBookings(role="tabpanel", aria-labelledby="allBookingsTab")
 				h2.p-3 All Bookings

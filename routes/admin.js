@@ -16,7 +16,20 @@ var db = new sqlite3.Database(path.join(__dirname, '..', 'flights.db'), (err) =>
 });
 
 router.get('/', function(req, res, next) {
-  res.render('admin', { title: 'Express' });
+   
+  let sql = 'select flight_number flightNumber, takeoff_date takeoffDate, takeoff_time takeoffTime, takeoff_city takeoffCity, takeoff_airport takeoffAirport, takeoff_terminal takeoffTerminal, destination_city destinationCity, flight_duration flightDuration from flights'
+  db.all(sql, (err, rows) => {
+    if(err) {
+      console.log(err)
+      res.json({error: "Your request could not be completed"})
+    }
+    else {
+      if(rows.length) {
+        // console.log(rows)
+        res.render('admin', {rows})
+      }
+    }
+  })
 });
 
 module.exports = router;
