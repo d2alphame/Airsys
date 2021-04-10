@@ -19,20 +19,29 @@ var db = new sqlite3.Database(path.join(__dirname, '..', 'flights.db'), (err) =>
 router.get('/', function(req, res, next) {
    
   let fsql = 'select flight_number flightNumber, takeoff_date takeoffDate, takeoff_time takeoffTime, takeoff_city takeoffCity, takeoff_airport takeoffAirport, takeoff_terminal takeoffTerminal, destination_city destinationCity, flight_duration flightDuration from flights'
-  db.all(fsql, (err, rows) => {
+  db.all(fsql, (err, flights) => {
     if(err) {
       console.log(err)
       res.json({error: "Your request could not be completed"})
     }
     else {
-      if(rows.length) {
-        // console.log(rows)
-        res.render('admin', {flights: rows})
+      if(flights.length) {
+        let bsql = 'select booking_number bookingNumber, seat_number seatNumber, first_name firstName, last_name lastName, middle_name middleName,  email, phone, takeoff_city takeoffCity, destination_city destinationCity, takeoff_date takeoffDate from bookings inner join flights on flights.flight_id = bookings.flight_id'
+        db.all(bsql, (berr, bookings) => {
+          if(berr) {
+            console.log(berr) 
+            res.json({error: "Your request could not be completed"})
+          }
+          else{
+            if(bookings.length) {
+              res.render('admin', {flights, bookings})
+            }
+          }
+        })
       }
     }
   })
 
-  let bsql = 'select '
 });
 
 

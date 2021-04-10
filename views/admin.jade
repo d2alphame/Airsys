@@ -15,10 +15,16 @@ block content
 						.list.group-item.flex-column.align-items-start.mb-5
 							p.font-weight-bold.font-italic #{flight.takeoffCity} to #{flight.destinationCity} on #{flight.takeoffDate} at #{flight.takeoffTime}
 							p.font-weight-bold.font-italic From #{flight.takeoffAirport} Terminal #{flight.takeoffTerminal}
-								
+							p.font-italic Flight number #{flight.flightNumber}, #{flight.flightDuration} hours	
 
 			.tab-pane.fade#allBookings(role="tabpanel", aria-labelledby="allBookingsTab")
-				h2.p-3 All Bookings
+				.list-group.mt-5
+					each booking in bookings
+						.list.group.flex-column.align-items-start.mb-5
+							p.font-weight-bold.font-italic Ticket Number #{booking.bookingNumber}
+							p.font-weight-bold.font-italic #{booking.takeoffCity} - #{booking.destinationCity}: #{booking.takeoffDate}
+							p #{booking.firstName} #{booking.lastName} #{booking.middleName}
+							p.font-italic #{booking.email} #{booking.phone}
 	script.
 
 		// Function to convert the date from yyyy-mm-dd to dd-MMM-yyyy
