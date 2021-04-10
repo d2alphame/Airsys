@@ -12,10 +12,11 @@ block content
 			.tab-pane.fade.show.active#allFlights(role="tabpanel", aria-labelledby="allFlightsTab")
 				h2.p-3 All Flights
 				.list-group
-					each row in rows
+					each flight in flights
 						.list.group-item.flex-column.align-items-start
-							.d-flex.w-100.justify-content-between
-								h4.mb-1 #{row.takeoffCity} to #{row.destinationCity} 
+							h4.mb-1 #{flight.takeoffCity} to #{flight.destinationCity}
+							h3 Takes off on #{flight.takeoffDate} at #{flight.takeoffTime}
+								
 
 			.tab-pane.fade#allBookings(role="tabpanel", aria-labelledby="allBookingsTab")
 				h2.p-3 All Bookings
