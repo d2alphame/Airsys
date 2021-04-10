@@ -1,5 +1,15 @@
 extends layout
 
 block content
-.container-fluid.p-5
-	h1 Airsys Admin
+	.container-fluid.p-5
+		h1.mb-5 Airsys Admin
+		ul.nav.nav-pills#tabNav(role="tablist")
+			li.nav-item(role="presentation")
+				a.nav-link.active#allFlightsTab(data-toggle="tab", href="#allFlights", role="tab", aria-controls="allFlights", aria-selected="true") All Flights
+			li.nav-item(role="presentation")
+				a.nav-link#allBookingsTab(data-toggle="tab", href="#allBookings", role="tab", aria-controls="allBookings", aria-selected="false") All Bookings
+		.tab-content#allContent
+			.tab-pane.fade.show.active#allFlights(role="tabpanel", aria-labelledby="allFlightsTab")
+				h2.p-3 All Flights
+			.tab-pane.fade#allBookings(role="tabpanel", aria-labelledby="allBookingsTab")
+				h2.p-3 All Bookings
