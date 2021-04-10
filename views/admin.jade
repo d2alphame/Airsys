@@ -10,12 +10,11 @@ block content
 				a.nav-link#allBookingsTab(data-toggle="tab", href="#allBookings", role="tab", aria-controls="allBookings", aria-selected="false") All Bookings
 		.tab-content#allContent
 			.tab-pane.fade.show.active#allFlights(role="tabpanel", aria-labelledby="allFlightsTab")
-				h2.p-3 All Flights
-				.list-group
+				.list-group.mt-5
 					each flight in flights
-						.list.group-item.flex-column.align-items-start
-							h4.mb-1 #{flight.takeoffCity} to #{flight.destinationCity}
-							h3 Takes off on #{flight.takeoffDate} at #{flight.takeoffTime}
+						.list.group-item.flex-column.align-items-start.mb-5
+							p.font-weight-bold.font-italic #{flight.takeoffCity} to #{flight.destinationCity} on #{flight.takeoffDate} at #{flight.takeoffTime}
+							p.font-weight-bold.font-italic From #{flight.takeoffAirport} Terminal #{flight.takeoffTerminal}
 								
 
 			.tab-pane.fade#allBookings(role="tabpanel", aria-labelledby="allBookingsTab")
