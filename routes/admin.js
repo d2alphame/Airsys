@@ -32,11 +32,11 @@ router.get('/', function(req, res, next) {
             console.log(berr) 
             res.json({error: "Your request could not be completed"})
           }
-          else{
-            if(bookings.length) {
+          //else{
+            //if(bookings.length) {
               res.render('admin', {flights, bookings})
-            }
-          }
+            //}
+          //}
         })
       }
     }
