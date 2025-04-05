@@ -1,0 +1,6 @@
+version: "2"
+services:
+  node:
+    build: .
+    ports: 
+      - 5000:3000
